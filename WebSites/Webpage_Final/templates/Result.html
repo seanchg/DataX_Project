@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Stylesheet.css')}}" />
+
+	<title>Recommendations For You</title>
+
+</head>
+
+<body>
+
+	<img src="../static/Goodjob.png" alt="Image" height="60" width="60">
+	<h1> Recommendations For You </h1>
+
+
+	<h2> Welcome... {{name}} ! </h2>
+	<!--
+Welcome ... <span id="result"></span> !
+<script>
+	document.getElementById("result").innerHTML=localStorage.getItem("textvalue");
+</script>
+-->
+
+	<p> <b> What we know about you now: </b> <br>
+		Your Age: {{ age }} <br>
+		Your major:{{major}} <br>
+		Your experience level: {{ expLev }} <br>
+		Skills you want to improve: {{ skillSets }} <br>
+	</p>
+
+
+	<b>The jobs we recommend: </b>
+
+	<table class="Jobs_Recommendation">
+		<thead>
+			<tr>
+				<th> Positions </th>
+				<th> $$$ Average Salary $$$ </th>
+				<th> Skill Sets </th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for value in jobsResult %}
+			<tr>
+				<td>{{ value[0] }}</td>
+				<!-- <td>{{ value[2] }}</td> -->
+				<td> {{ value[1] }}</td>
+				<!-- <td><a href="{{ value3 }}"> Link </a></td> -->
+				<td>{{ value[2] }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		<!-- <tr>
+			<td> Data Scientist </td>
+			<td> $95,000 </td>
+			<td> Python </td>
+		</tr> -->
+
+	</table>
+	<br>
+
+	<!-- Display related books if user lack specific skills -->
+
+	<br>
+	<b> For the skills you hope to master, please refer to the following resources (Books) </b>
+	<table class="Table_of_Books">
+		<thead>
+			<tr>
+				<th> Skills </th>
+				<th> Book Title / Author </th>
+				<th> Berkeley Library Access</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for value in book_list %}
+			<tr>
+				<td>{{ value[0] }}</td>
+				<td>{{ value[1] }}</td>
+				<td><a href="{{ value[2] }}"> Link </a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<br>
+	<b> For the skills you hope to master, please refer to the following resources (Course) </b>
+	<table class="Table_of_Course">
+		<thead>
+			<tr>
+				<th> Skills </th>
+				<th> Course Title </th>
+				<th> Online Course Access</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for value in course_list %}
+			<tr>
+				<td>{{ value[0] }}</td>
+				<td>{{ value[1] }}</td>
+				<td><a href="http://{{ value[2] }}"> Link </a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<h2> <b> Support links: </b> </h2>
+
+	<p> Please refer to Glassdoor to see more information about the interviews related to the job you are interested: </p>
+	<a href="https://www.glassdoor.com/index.htm">
+		Glassdoor Webpage </a>
+
+	<p> You can also check LinkedIn to see more information about the opening positions related to the job you are interested: </p>
+	<a href="https://www.linkedin.com/index.htm">
+		LinkedIn Webpage </a>
+
+</body>
+
+</html>
